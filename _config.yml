@@ -1,2 +1,4 @@
 title: "SOMOS.tech FAQ"
 markdown: kramdown
+theme: jekyll-theme-cayman
+url: https://faq.somos.tech

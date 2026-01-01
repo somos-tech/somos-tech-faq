@@ -1,3 +1,9 @@
+---
+layout: default
+title: "SOMOS.tech FAQ"
+permalink: /
+---
+
 # Frequently Asked Questions (FAQ)
 
 ## ⚠️ Important Notice: US Service Availability
