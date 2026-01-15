@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | SOMOS.tech</title>
+    <meta name="description" content="Frequently asked questions about SOMOS.tech services and regional availability.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #00E676;
+            --accent-dim: rgba(0, 230, 118, 0.1);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #00b359);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Notice Card */
+        .notice-card {
+            background: var(--bg-card);
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #00b359);
+        }
+
+        .notice-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .notice-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .notice-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .notice-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 2rem;
+        }
+
+        .faq-section h2 {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(0, 230, 118, 0.3);
+        }
+
+        .faq-question {
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent);
+            transition: transform 0.2s;
+        }
+
+        .faq-item.open .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .notice-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="https://somos.tech" class="logo">
+                <div class="logo-icon">S</div>
+                <span>SOMOS.tech</span>
+            </a>
+            <a href="https://somos.tech" class="back-link">
+                ← Back to main site
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about SOMOS.tech</p>
+        </div>
+
+        <div class="notice-card">
+            <div class="notice-icon">🌎</div>
+            <h2>Regional Availability Notice</h2>
+            <p>
+                SOMOS.tech is currently available in select regions as we thoughtfully expand our platform. 
+                If you're unable to access our services, it may be because we haven't launched in your area yet.
+            </p>
+            <p>
+                We're working hard to bring SOMOS.tech to more communities around the world. As a growing platform 
+                dedicated to Hispanic and Latinx professionals, we're carefully expanding to ensure we can deliver 
+                the best possible experience to everyone we serve.
+            </p>
+            <p>
+                <strong style="color: var(--accent);">Stay connected:</strong> Follow us on social media or 
+                check back soon for updates on availability in your region!
+            </p>
+        </div>
+
+        <div class="faq-section">
+            <h2>📍 Access & Availability</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Why can't I access SOMOS.tech from my location?</div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        We're currently rolling out SOMOS.tech in phases, starting with select regions. 
+                        This allows us to maintain high-quality services, manage infrastructure costs, 
+                        and ensure the best experience for our community. We appreciate your patience 
+                        as we work to expand globally.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">When will SOMOS.tech be available in my country?</div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        We're actively evaluating new regions for expansion. While we don't have specific 
+                        timelines yet, we're committed to growing our reach. Stay tuned to our social 
+                        channels for announcements about new region availability.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I join a waitlist for when you expand to my region?</div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        We're working on setting up a waitlist system. In the meantime, follow us on 
+                        <a href="https://linkedin.com/company/somos-tech" style="color: var(--accent);">LinkedIn</a> 
+                        to be the first to know when we announce new regions.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>❓ General Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">What is SOMOS.tech?</div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        SOMOS.tech is a community platform for Hispanic and Latinx professionals and allies 
+                        in tech. We provide mentorship, networking, career resources, and community programs 
+                        to help our members thrive in the technology industry.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Is SOMOS.tech free to join?</div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes! SOMOS.tech offers free membership with access to our community features, 
+                        networking opportunities, and many of our programs. Some premium features and 
+                        specialized programs may have associated costs.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How can I contact SOMOS.tech support?</div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        For support inquiries, please reach out to us through our main website at 
+                        <a href="https://somos.tech" style="color: var(--accent);">somos.tech</a> or 
+                        connect with us on our social media channels.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 SOMOS.tech — Where Tech Talent Thrives</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="https://somos.tech">Main Site</a> · 
+            <a href="https://linkedin.com/company/somos-tech">LinkedIn</a>
+        </p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                // Close other open items
+                document.querySelectorAll('.faq-item.open').forEach(openItem => {
+                    if (openItem !== item) {
+                        openItem.classList.remove('open');
+                    }
+                });
+                // Toggle current item
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>
